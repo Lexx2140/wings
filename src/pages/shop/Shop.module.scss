@@ -1,0 +1,59 @@
+@import "../../assets/scss";
+
+.shop {
+    display: flex;
+    flex-direction: column;
+    gap: px2vw(60);
+    padding: px2vw(205) px2vw(200) px2vw(120);
+
+    .text_content {
+        display: flex;
+        flex-direction: column;
+        max-width: px2vw(540);
+        gap: px2vw(20);
+
+        .title,
+        .subtitle {
+            color: var(--dark_blue);
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: px2vw(60) px2vw(40);
+
+        &_icon {
+            width: auto;
+
+            [data-icon] {
+                height: px2vw(290);
+            }
+        }
+    }
+
+    .load_more {
+        justify-content: center;
+        gap: px2vw(18);
+        align-items: center;
+        border-color: transparent;
+        background: #FAF9F9;
+
+        .arrow {
+            display: flex;
+            transform: rotate(90deg);
+
+            svg path {
+                transition: 0.3s ease-in-out;
+            }
+        }
+
+        &:hover {
+            background: var(--dark_blue);
+
+            svg path {
+                stroke: var(--white);
+            }
+        }
+    }
+}

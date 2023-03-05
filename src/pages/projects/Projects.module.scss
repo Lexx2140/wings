@@ -1,0 +1,74 @@
+@import "../../assets/scss";
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    gap: px2vw(64);
+    padding: px2vw(208) px2vw(200) px2vw(128);
+    background: var(--grey_gradient);
+
+    .text_content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .title {
+            color: var(--light_blue);
+
+            &::first-line {
+                color: var(--yellow);
+            }
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: px2vw(60) px2vw(40);
+        grid-template-areas:
+            "f f f s s s"
+            ". . . . . .";
+
+        &_icon {
+            width: auto;
+
+            &:nth-child(1) {
+                grid-area: f;
+            }
+
+            &:nth-child(2) {
+                grid-area: s;
+            }
+            &:nth-child(n + 3) {
+                grid-column: span 2;
+            }
+        }
+    }
+
+    .load_more {
+        justify-content: center;
+        gap: px2vw(18);
+        align-items: center;
+        border-color: transparent;
+        background-color: var(--white);
+
+        .arrow {
+            display: flex;
+            transform: rotate(90deg);
+
+            svg path {
+                transition: 0.3s ease-in-out;
+            }
+        }
+
+        &:hover{
+
+            background: var(--dark_blue);
+
+
+            svg path{
+                stroke: var(--white);
+            }
+        }
+    }
+}

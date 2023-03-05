@@ -1,0 +1,25 @@
+@import "../../assets/scss";
+
+.gift {
+    .icon {
+        width: 100%;
+        height: px2vw(375);
+        display: flex;
+        border-radius: px2vw(12);
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .information {
+        padding-top: px2vw(24);
+
+        .buttons {
+            margin-top: px2vw(32);
+        }
+    }
+}

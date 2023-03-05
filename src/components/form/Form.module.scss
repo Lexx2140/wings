@@ -1,0 +1,112 @@
+@import "../../assets/scss";
+
+.form_row {
+    display: flex;
+    flex-direction: column;
+    gap: px2vw(6);
+    position: relative;
+    width: 100%;
+
+    .placeholder {
+        font-family: var(--nunito_sb);
+        font-size: px2vw(16);
+        line-height: 140%;
+        color: #c0cad2;
+    }
+
+    input {
+        border: none;
+        width: 100%;
+        background: var(--grey_gradient);
+        font-family: var(--nunito_b);
+        font-size: px2vw(16);
+        line-height: 160%;
+        padding: px2vw(14) px2vw(24);
+        color: var(--dark_blue);
+        outline: none;
+        border-radius: px2vw(12);
+
+        &::placeholder {
+            font-family: var(--lato_r);
+            font-size: 15px;
+            line-height: 150%;
+            color: #c0cad2;
+        }
+    }
+}
+
+
+.form_select {
+
+    input {
+        cursor: pointer;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        font-size: px2vw(16);
+        width: 1.6em;
+        height: 1.6em;
+        margin: px2vw(14);
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.292893 2.31603C0.683418 1.89466 1.31658 1.89466 1.70711 2.31603L6 6.9481L10.2929 2.31603C10.6834 1.89466 11.3166 1.89466 11.7071 2.31603C12.0976 2.73741 12.0976 3.4206 11.7071 3.84198L6 10L0.292893 3.84198C-0.0976311 3.4206 -0.0976311 2.73741 0.292893 2.31603Z' fill='%2300487D'/%3E%3C/svg%3E") center/auto no-repeat;
+    }
+
+    &.active {
+        z-index: 10;
+
+        input {
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        &::after{
+            transform: rotateX(180deg);
+        }
+    }
+
+
+    .select_list {
+        display: flex;
+        flex-direction: column;
+        background: var(--grey_gradient);
+        border-radius: px2vw(12);
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding-bottom: px2vw(16);
+
+        .l {
+            border: none;
+            width: 100%;
+            font-family: var(--nunito_b);
+            font-size: px2vw(16);
+            line-height: 160%;
+            padding: 5px px2vw(24);
+            color: var(--dark_blue);
+            outline: none;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--light_blue);
+                background: #EBEDEF;
+            }
+
+            &.selected {
+                opacity: .3;
+                pointer-events: none;
+                background: #EBEDEF;
+
+            }
+        }
+
+
+    }
+
+}
