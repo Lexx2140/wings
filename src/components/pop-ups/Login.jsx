@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+// import AuthContext from "../../context/AuthProvider";
+
 import css from "./PopUp.module.scss";
 import fs from "./../form/Form.module.scss";
 import { Button, LinkNav } from "../button/Button";
@@ -10,6 +12,7 @@ import Facebook from "./enter-buttons/Facebook";
 import Eye from "../../assets/img/icon/eye.svg";
 
 const Login = (props) => {
+  // const { setAuth } = useContext(AuthContext);
   const [showPassword, setPassword] = useState(false);
   const toggleLogIn = () => props.popups(closePopUps());
   const toggleRegistration = () => props.popups(openReg());

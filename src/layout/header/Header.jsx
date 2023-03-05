@@ -6,7 +6,7 @@ import IconProfile from "../../assets/img/icon/profile.svg";
 
 import { LinkNav, Button } from "../../components/button/Button";
 import Logo from "../../components/logo/Logo";
-import { openLogIn } from "../../redux/state";
+import { openReg } from "../../redux/state";
 import { ButtonSupport } from "../../components/button-support/SupportButton";
 ButtonSupport;
 
@@ -18,7 +18,7 @@ const Header = ({ popups, options, menu }) => {
     };
   });
 
-  const toggleLogIn = () => popups(openLogIn());
+  const toggleLogIn = () => popups(openReg());
 
   return (
     <header className={css.header}>

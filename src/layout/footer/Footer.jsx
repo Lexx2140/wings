@@ -18,7 +18,7 @@ const Footer = ({ logIn, registration, support, menu, ...props }) => {
     };
   });
 
-  console.log(pagesNav);
+  // console.log(pagesNav);
 
   return (
     <>

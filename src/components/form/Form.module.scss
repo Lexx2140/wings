@@ -33,6 +33,18 @@
             color: #c0cad2;
         }
     }
+
+    &.error {
+        .placeholder {
+            color: var(--red);
+        }
+
+        input {
+            background: rgba(255, 199, 212, 0.2);
+            color: var(--red);
+
+        }
+    }
 }
 
 
@@ -63,7 +75,7 @@
             border-bottom-left-radius: 0px;
         }
 
-        &::after{
+        &::after {
             transform: rotateX(180deg);
         }
     }

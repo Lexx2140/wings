@@ -3,7 +3,7 @@ async function fetchREST(url, data) {
 
   const options = {
     method: "POST",
-    // credentials: 'same-origin',
+    credentials: 'include',
     headers: {
       // "Content-Type": "application/json",
       "X-WP-Nonce": window.BAMBOO.nonce,

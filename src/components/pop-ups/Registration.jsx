@@ -1,4 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { useContext } from 'react';
+import AuthContext from "../../context/AuthProvider";
 import css from "./PopUp.module.scss";
 import fs from "./../form/Form.module.scss";
 import { Button } from "../button/Button";
@@ -30,7 +32,7 @@ const labelsReg = [
   },
   {
     title: "Телефон",
-    type: "number",
+    type: "text",
     name: "user_phone",
     placeholder: "+380",
   },
@@ -49,18 +51,49 @@ const labelsReg = [
 ];
 
 const Registration = (props) => {
+  const { setAuth } = useContext(AuthContext);
+
+  const formRef = useRef(null);
+  const [isRemember, setRemember] = useState(false);
+  const [invalidLabels, setInvalid] = useState({});
+
   const toggleLogIn = () => props.popups(openLogIn());
   const toggleRegistration = () => props.popups(closePopUps());
 
-  const formRef = useRef(null);
-
   async function submitForm() {
+    setInvalid({});
+
     const data = new FormData(formRef.current);
 
-    const response = await fetchREST("wings/v1/users/create", data);
+    const response = await fetchREST("wings/v1/user/create", data);
+
+    switch (response.code) {
+      case "validation_error":
+        setInvalid(response.data.fields);
+        break;
+      case "success":
+        setInvalid({});
+        toggleRegistration();
+        break;
+
+      default:
+        break;
+    }
 
     console.log(response);
   }
+
+  const onInput = (e) => {
+    if (!invalidLabels[e.target.name]) return;
+
+    let i = invalidLabels;
+    delete i[e.target.name];
+    setInvalid({ ...i });
+  };
+
+  // useEffect(() => {
+  //   console.log(invalidLabels);
+  // }, [invalidLabels]);
 
   return (
     <div
@@ -84,8 +117,19 @@ const Registration = (props) => {
             <div className={css.form_content}>
               <form className={css.form_content} ref={formRef}>
                 {labelsReg.map((label, idx) => (
-                  <label key={idx} htmlFor={label.name} className={fs.form_row}>
-                    <span className={fs.placeholder}>{label.title}</span>
+                  <label
+                    key={idx}
+                    htmlFor={label.name}
+                    className={`${fs.form_row} ${
+                      invalidLabels[label.name] ? fs.error : ""
+                    }`}
+                    onInput={onInput}
+                  >
+                    <span className={fs.placeholder}>
+                      {invalidLabels[label.name]
+                        ? invalidLabels[label.name]
+                        : label.title}
+                    </span>
                     <input
                       type={label.type}
                       name={label.name}
@@ -96,8 +140,14 @@ const Registration = (props) => {
               </form>
 
               <div className={css.remember}>
-                <label htmlFor="check_reg" className={css.checkbox}>
-                  <input type="checkbox" id="check_reg" name="check_reg" />
+                <label htmlFor="check_remember" className={css.checkbox}>
+                  <input
+                    type="checkbox"
+                    id="check_remember"
+                    name="check_remember"
+                    defaultChecked={isRemember}
+                    onChange={(e) => setRemember(!isRemember)}
+                  />
                   <span className={css.checked}></span>
                   <span className={`link`}>Запам`ятати мене</span>
                 </label>
